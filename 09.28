@@ -1,0 +1,56 @@
+2018.09.28
+* 코딩의 기본 -> 변수와 함수의 구분
+Android(Android studio)/i-phone(Swift)
+
+"코드 설계" = 경험  (예외 처리는 경험을 통해 얻어지는 데이터)
+
+순서
+1. 시나리오를 나열한다.
+2. 코드로 변환한다.
+3. 변환된 코드들을 연결한다.
+
+#1 
+    Application Name                                - 변경가능
+    Company Domain : 회사 도메인 = Package Name(구조를 형성)      - 변경가능
+        ※ Package name은 어플의 차별성을 상징한다.
+            다른 어플과 중복이 불가하다(독특한 Company name을 부여하는 것을 추천한다)
+    
+        PC 저장소(Project Location) -> default를 추천/한 번 지정하면 환경 설정의 번거로움을 방지하기 위해 변경하지 않는다.
+            ex) 이미지는 drawable에 보관된다.
+
+#2  
+    Target Android device (앱의 용도) - Phone&Tablet, TV, Wearable
+    API(하드웨어 안의 최소 소프트웨어 버전) 설정
+        -> 90% 이상이 Icecream 이기 때문에 default로 채택
+        -> 단 통신 관련시 의도적으로 API를 낮춰 이용한다. (Special Case)
+        -> API가 높을 수록 높은 기능을 사용하기 유리하고 2018.09엔 API 19를 주로 이용.
+
+    ※ 참고
+        버전을 표기법 A.B.C
+            A: 대규모 코드량의 변화
+            B: 소규모 모듈 변화
+            C: 소규모 코드 변경
+#3
+    Basic(Plot & Head)
+    Button Navigator(Tab 기능 - 터치로 화면 넘김시 이용)
+    Full Screan (영상 재생 ex YOUTUBE)
+
+#4
+    Activity Name   : 내부 Logic File
+    Layout Name     : 화면 파일
+    ☆ 혼자 개발시 자유 / 협업 시 Name을 통일.(PL 권한) 
+
+------Setting finish------
+
+#5 안드로이드 스튜디오 구조 파악하기 
+
+    gradle Module : 인터넷에서 자동으로 Library나 어플 등을 심음
+    Project View 이용 -> 파일 구조 파악에 유리(모든 에디터 구조가 Project View 형식)
+
+    폴더 구분은 Depth
+        ex) 1depth 2depth
+    
+    src (Main 코딩 영역)
+        main
+        java
+
