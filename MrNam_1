@@ -1,0 +1,42 @@
+1. csv
+'''
+id,name
+1,aaa
+2,bbb
+3,ccc
+'''
+
+2. jason
+* List : []
+* Dictionary : {}
+
+'''
+[
+    {"id":1,"name":aaa},
+    {"id":2,"name":bbb},
+    {"id":3,"name":ccc}
+]
+
+3. XML
+xml>row*3>id+name   
+
+4. Docker 
+    
+    - 가상 머신
+        정의 : 가상 머신은 원래 Popek과 Goldberg가 실제 컴퓨터의 효율적이고 고립된 복제물로 정의하였다. 현재는 아무 실제 하드웨어와 직접적인 통신이 없는 가상 컴퓨터를 가리킨다.
+            (윈도우에 리눅스를 추가로 설치)
+    약어 : Virtual Machine
+
+    -> Vmware(유료)
+    -> Vmware Workstation Player(무료) √ 
+    -> Virtual Box(무료)
+    -> Parallels(유료)
+
+    - Docker ?
+        도커는 2013년 3월 Docker. inc에서 출시한 오픈 소스 컨테이너 프로젝트
+
+        ※ 특징
+            1. Vmware나 Virtual Box와 같은 VM툴을 사용하지 않더라도 복잡한 리눅스 애플리케이션을 컨테이너로 묶어서 실행시킬 수 있음.
+            2. 컨테이너 이미지를 전 세계 사람들과 공유한다.
+
+    
