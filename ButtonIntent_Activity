@@ -1,0 +1,86 @@
+
+
+
+Intent -> 액티비팅 등의 전환이 일어날 때 호출이나 메세지를 전달하는 매개체.
+    
+    1. 명시적 인텐트
+    2. 암시적 인텐트
+
+1. 명시적 인텐트 : 전환될 액티비티를 직접 적어서 표현하는 방법.
+
+    a. 레이아웃 구성
+        처음 보여줄 액티비티와 인텐트로 전달 받은 액티비티 총 2개의 액티비티를 구성해야 한다.
+        
+        activity_main
+        
+            <LinearLayout
+                xmlns:android=”http://schemas.android.com/apk/res/android"
+                android:layout_width=”match_parent”
+                android:layout_height=”match_parent”
+                android:padding=”10dp”
+                android:orientation=”vertical”
+                android:background=”#ff6">
+            <TextView android:text=”Main Activity”
+                android:layout_width=”wrap_content”
+                android:layout_height=”wrap_content”
+                android:textSize=”20dp”/>
+            <EditText
+                android:id=”@+id/edittext”
+                android:layout_width=”200dp”
+                android:layout_height=”wrap_content” />
+            <Button
+                android:id=”@+id/button1"
+                android:layout_width=”match_parent”
+                android:layout_height=”wrap_content”
+                android:text=”go to sub Activity”
+                android:background=”#eee”/>
+        </LinearLayout>   
+
+        sub_activity
+            
+            <LinearLayout xmlns:android=”http://schemas.android.com/apk/res/android"
+                android:orientation=”horizontal” android:layout_width=”match_parent”
+                android:layout_height=”match_parent”
+                android:padding=”10dp”
+                android:background=”#1ff”>
+            <TextView
+                android:layout_width=”wrap_content”
+                android:layout_height=”wrap_content”
+                android:text=”Sub Activity : “
+                android:textSize=”20dp”/>
+            <TextView
+                android:id=”@+id/textview”
+                android:layout_width=”wrap_content”
+                android:layout_height=”wrap_content”
+                android:textSize=”20dp”/>
+            </LinearLayout>
+
+    b. MainActivity 구현
+
+        protected void onCreate(Bundle savedInstanceState) {
+            
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
+            Button button1=(Button)findViewById(R.id.button1);
+            final EditText editText=(EditText)findViewById(R.id.edittext);
+                
+                button1.setOnClickListener(new View.OnClickListener() {
+                
+                    @Override
+                        public void onClick(View v) {
+                        Intent intent=new Intent(MainActivity.this,SubActivity.class);
+                        intent.putExtra(“text”,String.valueOf(editText.getText()));
+                        startActivity(intent);
+                        }
+                });
+        }
+
+        ※ 인텐트 객체를 선언할 때 입력해 주어야 하는 파라미터는 현재 액티비와 전환할 액티비티이다
+        프래그먼트를 사용할 경우 프레그먼트 액티비티를 나타대는 getActivity()를 써주면 된다.
+
+        에디트텍스트에 입력된 문자열을 넘겨줄 때 putExtra를 사용합니다. 넘겨줄 데이터의 이름과 데이터를 적어주면 됩니다. 
+        이 때 사용한 이름은 데이터를 넘겨 받는 액티비티에도 똑같이 써줘야 합니다. 
+        에티드텍스트에서 텍스트를 불러오는 부분에서그냥 쓰게 되면String형으로 반환이 되지 않아서 String형으로 변환을 시켜주었습니다.
+
+        그리고 전환될 액티비티로 넘어갈 때 startActivity()를 사용합니다. 
+        만약 MainActivity를 종료시키고 싶다면 finish()를 startActivity()다음에 적어주면 됩니다. -> 만약 메인 액티비티로 전환시키고 싶다면 어떻할까 ??
