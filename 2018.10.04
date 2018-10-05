@@ -1,0 +1,67 @@
+
+
+선행 과제 : 하드웨어 구동원리를 이해한다.
+
+설계
+
+1. 필요부품(기본변수) - 아두이노 UNO, 초음파센서
+
+2. 필요작업(기본함수) - 선언부, 진입부(Setup), 구동부(Loop)
+
+    초음파 거리센서는 발신부와 수신부로 구성된다.
+    회로도 : VCC, GND, Trig, Echo
+
+        Vcc - 5V / 3.3V
+
+
+        - 필요부품 : 아두이노 uno, 초음파 센서(Trig,Echo)                               << 변수                           
+
+        - 선언부
+
+            /* 초음파 센서엔 VCC, GND, Trig, Echo 가 있는데 초음파 센서의 작동 원리에 따라 
+            Trig에서 신호를 발생시키고 Echo 에서 신호를 수신하므로 두개의 변수가 필요하다. */
+
+            int trigPin = a ;
+            int echoPin = b ;
+            int duration ;
+            float distance ;
+
+
+        - 진입부 << setup() 함수 영역(진입부)
+        
+                아두이노 우노에서 초음파 센서를 연결한다.                
+                    a. 트리거핀을 출력으로 설정
+                    b. 에코핀을 입력으로 설정
+                    c. 초음파 센서 값을 확인하기 위한 시리얼 설정
+
+                        pinMode(a,OUTPUT);
+                        pinMode(b,INPUT);
+                        Serial.begin(9600);
+
+        - 구동부 << loop() 함수 영역 (구동부)
+
+            a. 초음파 센서의 발신부에서 초음파를 잠시동안 발생시킨다.            
+
+                digitalWrite(trigPin,HIGH);
+                delay(1000);
+                digitalWrite(trigPin,LOW);
+
+            b. 방출된 초음파를 에코핀으로 입력 받은 시간을 저장한다.
+            
+                duration = pulseIn(EchoPin,HIGH);
+                       
+                delay(500);
+
+            c. 초음파의 이동 시간을 계산하여 변수에 저장한다.
+
+                distance = (duration*340)/10000/2;
+
+            d. 저장된 변수를 시리얼을 통해 확인한다.
+                
+                Serial.println(duration);
+                Serial.println(distance);
+                Serial.println("cm");
+
+            e. 눈으로 확인하기 위해 속도를 조절한다.  -> delay 개념.
+
+        

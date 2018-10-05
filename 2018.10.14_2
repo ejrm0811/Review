@@ -1,0 +1,114 @@
+조건
+
+    1. 방이 어두워지고 사람이 없으면 붉은 빛을 켜준다.
+    2. 방이 어두워지고 사람이 인식되면(초음파 센서 몇 이하) 녹색불을 켜준다.
+    3. 방이 밝으면서 사람이 인식되면 파란불을 켜준다.
+    4. 방이 밝으면서 사람이 없으면 모든 불은 꺼진다.
+
+        A. 설계자 : 신동혁
+        B. 설계일 : 2018.10.04
+        C. 설계목적 : 조건에 따라 LED 빛을 다르게 제어한다.
+        D. 설계내용.
+
+            필요 부품 : 아두이노 보드, 조도센서, 초음파 센서, LED 센서
+
+            a. 선언부
+
+                ㄱ. 조도센서를 A0로 선언한다.                         const int cds = A0 ; 
+                ㄴ. 조도센서의 입력값을 선언한다.                     int cds_val ;
+                ㄷ. 초음파 센서의 trigPin을 D3 로 선언한다.           const int trigPin = 3 ;
+                ㄹ. 초음파 센서의 echoPin을 D4 로 선언한다.             const int echoPin = 4 ;
+                ㅁ. 초음파 센서의 신호를 받을 시간 변수를 선언한다.       int duration ;
+                ㅂ. 초음파 센서의 전역 거리 변수를 선언한다.            float distance ; 
+                ㅅ. LED 센서의 R,G,B 의 변수를 선언한다. 
+                    
+                    const int redPin = 7 ;
+                    const int greenPin = 8 ;
+                    const int bluePin = 9 ;
+
+                 
+            b. 진입부
+
+                ㄱ. 조도센서를 입력값으로 설정한다 pinMode(cds,INPUT);                
+                ㄴ. 초음파 센서의 trigPin을 출력값으로 설정한다. pinMode(trigPin,OUTPUT)                
+                ㄷ. 초음파 센서의 echoPin을 입력값으로 설정한다. pinMode(echoPin,INPUT)
+                ㄹ. LED 센서의 R,G,B 값을 출력으로 설정한다. 
+                        
+                        pinMode(redPin,OUTPUT);
+                        pinMode(greenPin,OUTPUT);
+                        pinMode(bluePin,OUTPUT);
+
+                ㅁ. 통신 시리얼을 설정한다. Serial.begin(9600)
+
+            c. 구동부
+            
+                ㄱ. 초음파 센서를 일정시간동안 방출시킨다.
+                    
+                    digitalWrite(trigPin,HIGH);
+                    delay(50);
+                    digitalWrite(trigPin,LOW);
+                
+                ㄴ. 초음파 센서 수신 값이 돌아오는 시간을 체크한다.    
+                
+                    duration = purseIn(echoPin,HIGH);
+                    distance = (float duration*340) / 10000 / 2
+                                    
+                . 조도 센서 값을 읽어 들인다.
+
+                    cds_val = analogRead(cds);
+                    delay(50);
+
+                . 조건
+                
+                    - 조도 센서값이 30이하 이고 거리 변수 값이 30cm이상 이면 LED의 R값이 출력된다. 
+                        if(cds_val <= 30 && distance >= 30){
+                            digitalWrite(redPin,LOW);
+                            delay(2000);
+                            digitalWrite(redPin,HIGH);
+                        }
+                    - 조도 센서값이 30이하 이고 거리 변수 값이 30cm이하 이면 LED의 G값이 출력된다.
+                        if(cds_val <= 30 && distance <= 30){
+                            digitalWrite(greenPin,LOW);
+                            delay(2000);
+                            digitalWrite(greenPin,HIGH);
+                        }
+                    
+                    - 조도 센서값이 30이상 이고 거리 변수 값이 30cm이하 이면 LED의 B값이 출력된다.
+                        if(cds_val >= 30 && distance <= 30){
+                            digitalWrite(redPin,LOW);
+                            delay(2000);
+                            digitalWrite(redPin,HIGH);
+                        }
+                    - 조도 센서값이 30이상 이고 거리 변수 값이 30cm이상 이면 LED가 모두 꺼진다.
+                        if(cds_val >= 30 && distance >= 30){
+                            digitalWrite(redPin,HIGH);
+                            digitalWrite(greenPin,HIGH);
+                            digitalWrite(bluePin,HIGH);
+                            delay(2000);
+                        }
+                . 각 상황의 시리얼을 읽어 상황을 파악한다.(Serial.println)
+                . 사람이 인식할 수 있도록 센서의 작동 시간을 조절한다.(Delay)
+
+
+강사님 설계
+
+    
+    
+    -진입부-
+        
+
+
+
+    
+    -구동부-
+    광센서 값을 받아서 저장
+    초음파 센서의 트리거핀을 통해 초음파를 방출한다.
+    초음파 센서의 에코핀을 통해 초음파를 수신한다.
+    수신한 시간으로 거리를 계산하여 저장한다.
+    조건 4개
+
+
+
+- 하드웨어 설계
+- 소프트웨어 설계
+

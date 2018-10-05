@@ -81,3 +81,13 @@
 
 
 8. 세 번째 버튼을 누르면 회사 설명이 나온다.
+
+1. Intro.Java
+    a. 화면생성 (OnCrete()) 
+    b. 화면 매핑 (setcontentView(intri.xml))
+    c. 3초후 intent 이동() MAIN.java 이동 (Timer();))
+2. 메인액티비티 3뎁스짜리
+3. 화면을 4개 그려오기.
+
+
+
