@@ -7,7 +7,7 @@
 2. 첫 번째 화면은 회사 로고가 지정된 인트로가 출력된다.
     Intro Activity를 생성한다.(Java 파일과 XML 파일을 동시에 생성한다.)
         a. 액티비티 이름을 Intro 로 지정하면 자동으로 activity_intro.xml 이라는 파일이 생성된다.   
-        b.Activity_intro.xml에 들어가서 기존에 drawable 폴더에 다운받아 놓았던 이미지 파일을 imageView로 불러온다.
+        b. Activity_intro.xml에 들어가서 기존에 drawable 폴더에 다운받아 놓았던 이미지 파일을 imageView로 불러온다.
         c. constraint를 화면에 맞게 조절하여 구속시키고 layout 넓이와 높이는 Wrap_content로 지정한다.
         d. 오른쪽 하단에 View All properties라는 항목을 클릭하고 background를 @drwable/allsteel 로 지정한다.
         
