@@ -24,12 +24,4 @@
 
 
 
-1. 인트로 화면에 쓰일 레이아웃과 액티비티 준비
 
-2. 메니페스트 파일에서 위 인트로 액티비티를 등록시키고,  앱 실행시 첫 가동액티비티로 사용하기 위해  android.intent.action.MAIN 등를 설정합니다.
-
-3. 인트로 액티비티 클래스 에서는 쓰레드를 사용하여 일정시간뒤에 전환할수 있도록 해야 합니다. 안드로이드에선 Handler 객체를 통해서 작업쓰레드를 다루었었죠. 
-
-4. 과연 어느 시점에서 전환 대기 시간을 설정할까요?   인트로 액티비티 클래스에서 nResume() 과 onPause() 에서 이를 다루도록 합니다.  Handler 객체의 postDelayed(), removeCallbacks() 메소드를 사용합니다.
-
-출처: http://bitsoul.tistory.com/164 [Happy Programmer~]
