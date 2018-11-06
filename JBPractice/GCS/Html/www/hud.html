@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <!-- Syntax coloration -->
+    <link rel="stylesheet" type="text/css" href="_examples_data/prism/prism.css" />
+    <!-- This page style -->
+    <link rel="stylesheet" type="text/css" href="_examples_data/style.css" />
+    <!-- Flight Indicators library styles -->
+    <link rel="stylesheet" type="text/css" href="css/flightindicators.css" />
+</head>
+<body style="background-color:#555E6E;margin:0">
+<div >
+    <div class="examples">
+        <div>
+            <span id="attitude"></span>
+        </div>
+        <!--
+        <div>
+            <span id="airspeed"></span>
+        </div>
+        -->
+        <div>
+            <span id="heading"></span>
+        </div>
+    </div>
+</div>
+
+<!-- Syntax color -->
+<script src="_examples_data/prism/prism.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.flightindicators.js"></script>
+
+<!-- Let start our scripts -->
+<script type="text/javascript">
+var attitude = $.flightIndicator('#attitude', 'attitude', {size:160, roll:50, pitch:-20, showBox : false});
+//var airspeed = $.flightIndicator('#airspeed', 'airspeed', {size:160, showBox: false});
+var heading = $.flightIndicator('#heading', 'heading', {size:160, heading:150, showBox:false});
+
+var spd=100;
+
+// roll, pitch (-90~90)
+var roll = 0;
+var pitch = -90;
+
+// heading (0~360)
+var head=60;
+
+
+
+//var altimeter = $.flightIndicator('#altimeter', 'altimeter',{size:160, showBox: false});
+    
+// Update at 20Hz
+var increment = 0;
+setInterval(function() {
+    // Airspeed update
+    //airspeed.setAirSpeed(spd);
+
+    // Attitude update(원본)
+    //attitude.setRoll(30*Math.sin(increment/10));
+    //attitude.setPitch(50*Math.sin(increment/20));
+
+    // Attitude update(수정본)
+    attitude.setRoll(roll);
+    attitude.setPitch(pitch);
+
+    // Altimeter update
+    //altimeter.setAltitude(10*increment);
+    //altimeter.setPressure(1000+3*Math.sin(increment/50));
+    increment++;
+    
+    // Heading update(원본)
+    //heading.setHeading(increment);
+    // Heading update(수정본)
+    heading.setHeading(head);
+
+}, 50);
+
+
+function changeAirSpeed(setSpeed)
+{
+    spd= setSpeed;
+}
+
+function changeAlt(setRoll,setPitch)
+{
+    roll = setRoll;
+    pitch = setPitch;
+}
+
+function changeHead(setHead)
+{
+    head = setHead;
+}
+
+</script>
+</body>
+</html>

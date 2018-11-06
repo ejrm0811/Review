@@ -1,0 +1,10 @@
+-> 웹캠 스트리밍 비디오(브라우저를 통한 라즈베리파이)
+
+1. Compiling FFMpeg For Webcam Streaming
+    We need to do is to get a version of ffmpeg that can stream. 
+    Git installation on Rasberry PI.
+        Code : sudo apt-get install git
+
+2. 
+
+    
